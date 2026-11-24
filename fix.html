@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZHAA WEBMAKER — Jasa Pembuatan Website Profesional & Solusi Digital Bisnis</title>
+    <meta name="description" content="Jasa pembuatan website profesional terima beres termasuk domain dan hosting untuk UMKM, perusahaan, toko online, properti, travel, kursus online, dan restoran.">
+    
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        navyBase: '#090d16',
+                        navySurface: '#0f172a',
+                        skyAccent: '#38bdf8',
+                        skyDeep: '#0284c7',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Pola Grid Halus Latar Belakang */
+        .bg-grid-pattern {
+            background-size: 44px 44px;
+            background-image: linear-gradient(to right, rgba(30, 41, 59, 0.35) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(30, 41, 59, 0.35) 1px, transparent 1px);
+        }
+
+        /* Masking Gradasi Halus agar Foto Hero Transparan Hanya di Bagian Atas */
+        .hero-bg-mask {
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.55) 55%, rgba(0, 0, 0, 0) 100%);
+            mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.55) 55%, rgba(0, 0, 0, 0) 100%);
+        }
+
+        /* Custom Scrollbar Halus untuk Modal Live Demo */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #090d16;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #334155;
+        }
+    </style>
+</head>
+<body class="bg-[#090d16] text-slate-200 font-sans antialiased selection:bg-sky-500 selection:text-slate-950 overflow-x-hidden">
+
+    <!-- ===================================================================== -->
+    <!-- 1. NAVIGATION BAR (STICKY GLASSMORPHISM HEADER)                       -->
+    <!-- ===================================================================== -->
+    <header class="sticky top-0 z-40 bg-[#090d16]/85 backdrop-blur-xl border-b border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo & Wordmark Dinamis -->
+                <a href="#beranda" class="flex items-center gap-3.5 group">
+                    <div id="navbar-logo-slot" class="shrink-0">
+                        <!-- Logo SVG Geometris ZW < > atau Gambar Kustom dirender otomatis via JS -->
+                    </div>
+                    <div>
+                        <span id="navbar-brand-name" class="font-display text-lg sm:text-xl font-extrabold tracking-tight text-white block leading-none">
+                            ZHAA <span class="text-sky-400">WEBMAKER</span>
+                        </span>
+                        <span id="navbar-tagline" class="text-[11px] font-medium text-slate-400 tracking-wide block mt-1">
+                            Jasa Pembuatan Website
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Menu Navigasi Desktop -->
+                <nav class="hidden lg:flex items-center gap-7 text-sm font-medium text-slate-300">
+                    <a href="#layanan" class="hover:text-sky-400 transition-colors">Layanan</a>
+                    <a href="#portofolio" class="hover:text-sky-400 transition-colors">Portofolio Demo</a>
+                    <a href="#harga" class="hover:text-sky-400 transition-colors">Paket Harga</a>
+                    <a href="#alur-kerja" class="hover:text-sky-400 transition-colors">Alur Kerja</a>
+                    <a href="#konsultasi" class="hover:text-sky-400 transition-colors">Kontak</a>
+                </nav>
+
+                <!-- Tombol CTA Utama & Hamburger Mobile -->
+                <div class="flex items-center gap-3">
+                    <button onclick="openWhatsApp('Halo ZHAA WEBMAKER! Saya ingin konsultasi gratis mengenai pembuatan website untuk bisnis saya.')" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-display font-bold text-xs sm:text-sm shadow-lg shadow-sky-500/20 transition-all cursor-pointer">
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/></svg>
+                        <span>Konsultasi Gratis</span>
+                    </button>
+
+                    <!-- Tombol Menu Mobile -->
+                    <button id="mobile-menu-btn" aria-label="Buka Menu Navigasi" class="lg:hidden p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white cursor-pointer">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dropdown Menu Mobile -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-[#0c1220] border-b border-slate-800 px-4 pt-3 pb-5 space-y-2">
+            <a href="#layanan" class="mobile-link block px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-200 hover:bg-slate-800/70 hover:text-sky-400">Layanan</a>
+            <a href="#portofolio" class="mobile-link block px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-200 hover:bg-slate-800/70 hover:text-sky-400">Portofolio Demo</a>
+            <a href="#harga" class="mobile-link block px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-200 hover:bg-slate-800/70 hover:text-sky-400">Paket Harga</a>
+            <a href="#alur-kerja" class="mobile-link block px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-200 hover:bg-slate-800/70 hover:text-sky-400">Alur Kerja</a>
+            <a href="#konsultasi" class="mobile-link block px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-200 hover:bg-slate-800/70 hover:text-sky-400">Kontak</a>
+            <div class="pt-2">
+                <button onclick="openWhatsApp('Halo ZHAA WEBMAKER! Saya ingin konsultasi gratis mengenai pembuatan website.')" class="w-full py-3 px-4 rounded-xl bg-sky-500 text-slate-950 font-display font-bold text-sm flex items-center justify-center gap-2 cursor-pointer">
+                    <span>Konsultasi Gratis via WhatsApp</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===================================================================== -->
+    <!-- 2. HERO SECTION (LATAR BELAKANG TRANSPARAN HANYA DI BAGIAN ATAS)      -->
+    <!-- ===================================================================== -->
+    <section id="beranda" class="relative pt-16 pb-20 sm:pt-24 sm:pb-28 bg-grid-pattern overflow-hidden">
+        <!-- Lapisan Foto Latar Belakang Transparan (Hanya Bagian Atas / Hero Section) -->
+        <div id="hero-bg-layer" class="hero-bg-mask absolute inset-0 bg-cover bg-center opacity-25 mix-blend-luminosity pointer-events-none transition-opacity duration-500"></div>
+        <!-- Gradasi Gelap Tambahan agar Teks Tetap Kontras & Menyatu dengan #090d16 -->
+        <div class="absolute inset-0 bg-gradient-to-b from-[#090d16]/45 via-[#090d16]/75 to-[#090d16] pointer-events-none"></div>
+
+        <!-- Ambient Glow Halus -->
+        <div class="absolute top-16 left-1/4 w-96 h-96 bg-sky-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-10 right-1/5 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+                <!-- Kolom Kiri: Headline & Trust Metrics -->
+                <div class="lg:col-span-7 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-slate-900/90 border border-slate-800 text-sky-400 text-xs sm:text-sm font-medium mb-6">
+                        <span class="w-2 h-2 rounded-full bg-sky-400 animate-ping"></span>
+                        <span>Solusi Website Profesional • Terima Beres Domain & Hosting</span>
+                    </div>
+
+                    <h1 class="font-display text-3xl sm:text-5xl lg:text-[52px] font-extrabold text-white leading-[1.15] tracking-tight mb-6">
+                        Wujudkan Website Profesional untuk Meningkatkan <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-blue-500">Kredibilitas Bisnis Anda</span>
+                    </h1>
+
+                    <p class="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0 mb-8">
+                        Layanan pembuatan website cepat, responsif sempurna di ponsel maupun laptop, serta siap terindeks mesin pencari (SEO-ready) dengan biaya transparan terima beres termasuk domain dan hosting.
+                    </p>
+
+                    <!-- Dua Tombol CTA Utama -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                        <a href="#harga" class="w-full sm:w-auto px-7 py-4 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-display font-bold text-sm sm:text-base shadow-xl shadow-sky-500/20 transition-all flex items-center justify-center gap-2">
+                            <span>Lihat Paket Harga</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                        </a>
+                        <a href="#portofolio" class="w-full sm:w-auto px-7 py-4 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 text-white font-display font-semibold text-sm sm:text-base transition-all flex items-center justify-center gap-2">
+                            <svg class="w-4 h-4 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                            <span>Lihat Demo Website</span>
+                        </a>
+                    </div>
+
+                    <!-- Trust Metrics -->
+                    <div class="grid grid-cols-3 gap-4 mt-12 pt-8 border-t border-slate-800/80 max-w-xl mx-auto lg:mx-0">
+                        <div>
+                            <p class="font-display text-xl sm:text-2xl font-extrabold text-white">9+ Jenis</p>
+                            <p class="text-xs text-slate-400 mt-1">Kategori Website</p>
+                        </div>
+                        <div>
+                            <p class="font-display text-xl sm:text-2xl font-extrabold text-sky-400">100%</p>
+                            <p class="text-xs text-slate-400 mt-1">Mobile Responsive</p>
+                        </div>
+                        <div>
+                            <p class="font-display text-xl sm:text-2xl font-extrabold text-white">Terima Beres</p>
+                            <p class="text-xs text-slate-400 mt-1">Domain & Hosting</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kolom Kanan: Preview Panel Standar Kualitas -->
+                <div class="lg:col-span-5">
+                    <div class="rounded-2xl bg-[#0f172a]/90 backdrop-blur-xl border border-slate-800 shadow-2xl overflow-hidden">
+                        <div class="px-4 py-3 bg-slate-950/90 border-b border-slate-800 flex items-center justify-between">
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-3 h-3 rounded-full bg-slate-700"></span>
+                                <span class="w-3 h-3 rounded-full bg-slate-700"></span>
+                                <span class="w-3 h-3 rounded-full bg-sky-500"></span>
+                            </div>
+                            <div class="px-3 py-1 rounded-md bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-400 flex items-center gap-2">
+                                <svg class="w-3 h-3 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                                <span>bisnisanda.biz.id</span>
+                            </div>
+                            <span class="text-[10px] font-semibold text-emerald-400 uppercase">SSL Aktif</span>
+                        </div>
+
+                        <div class="p-6 space-y-5">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-xs text-slate-400">Standar Kualitas Pengembangan</p>
+                                    <h2 class="font-display text-lg font-bold text-white mt-0.5">Performa & Konversi Bisnis</h2>
+                                </div>
+                                <div class="flex gap-1.5">
+                                    <button onclick="switchHeroMetric('speed')" id="btn-metric-speed" class="px-2.5 py-1 rounded-lg bg-sky-500 text-slate-950 font-bold text-xs cursor-pointer transition-colors">Speed</button>
+                                    <button onclick="switchHeroMetric('seo')" id="btn-metric-seo" class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 font-semibold text-xs cursor-pointer transition-colors">SEO</button>
+                                </div>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-slate-950/80 border border-slate-800/90 space-y-4">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-3.5">
+                                        <div class="w-14 h-14 rounded-2xl bg-sky-500/10 border border-sky-500/30 flex items-center justify-center font-display text-xl font-extrabold text-sky-400" id="metric-score">
+                                            99
+                                        </div>
+                                        <div>
+                                            <p class="text-sm font-bold text-white" id="metric-title">Kecepatan Muat Halaman</p>
+                                            <p class="text-xs text-slate-400" id="metric-desc">Ringan & stabil diakses lewat jaringan seluler</p>
+                                        </div>
+                                    </div>
+                                    <span class="px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-[11px] font-semibold">Optimal</span>
+                                </div>
+
+                                <div class="space-y-2.5 pt-2 border-t border-slate-800/80">
+                                    <div>
+                                        <div class="flex justify-between text-xs mb-1">
+                                            <span class="text-slate-400">Kompatibilitas Layar Mobile</span>
+                                            <span class="text-white font-semibold">100%</span>
+                                        </div>
+                                        <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                                            <div class="h-full bg-sky-400 w-full rounded-full"></div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-between text-xs mb-1">
+                                            <span class="text-slate-400">Integrasi Chat & Order WhatsApp</span>
+                                            <span class="text-sky-400 font-semibold">Siap Pakai</span>
+                                        </div>
+                                        <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                                            <div class="h-full bg-blue-500 w-[95%] rounded-full"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800">
+                                    <p class="text-[11px] text-slate-400">Domain Resmi</p>
+                                    <p class="text-sm font-bold text-white mt-0.5">.my.id / .biz.id / .web.id</p>
+                                </div>
+                                <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800">
+                                    <p class="text-[11px] text-slate-400">Skema Pembayaran</p>
+                                    <p class="text-sm font-bold text-sky-400 mt-0.5">DP 50% Awal</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 3. SERVICES SECTION (9 KATEGORI WEBSITE — GRID 3x3)                   -->
+    <!-- ===================================================================== -->
+    <section id="layanan" class="py-20 border-t border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="text-sky-400 font-display font-bold text-xs uppercase tracking-widest">Layanan Kami</span>
+                <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-white mt-2 mb-4">9 Kategori Website Sesuai Kebutuhan Bisnis</h2>
+                <p class="text-slate-400 text-sm sm:text-base">Mulai dari halaman penawaran produk tunggal hingga sistem toko online dan portal keanggotaan, seluruhnya kami bangun dengan struktur yang rapi dan mudah dikelola.</p>
+            </div>
+
+            <!-- Grid 3x3 Layanan -->
+            <div id="services-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Dirender otomatis oleh JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 4. INTERACTIVE PORTFOLIO & LIVE DEMO SHOWCASE                         -->
+    <!-- ===================================================================== -->
+    <section id="portofolio" class="py-20 bg-[#0c1220] border-t border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <span class="text-sky-400 font-display font-bold text-xs uppercase tracking-widest">Showcase Proyek</span>
+                <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-white mt-2 mb-4">Portofolio & Live Demo Interaktif</h2>
+                <p class="text-slate-400 text-sm sm:text-base">Pilih kategori di bawah ini dan klik tombol <strong class="text-white">Live Demo Interaktif</strong> untuk mencoba langsung tampilan dan fitur website dalam mode Desktop maupun Mobile.</p>
+            </div>
+
+            <!-- Tab Filter Kategori -->
+            <div class="flex flex-wrap items-center justify-center gap-2.5 mb-12" id="portfolio-filters">
+                <button data-filter="all" class="filter-btn active px-4 py-2.5 rounded-xl text-xs sm:text-sm font-display font-bold bg-sky-500 text-slate-950 shadow-lg shadow-sky-500/20 transition-all cursor-pointer">Semua</button>
+                <button data-filter="property" class="filter-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-medium bg-slate-900 border border-slate-800 text-slate-300 hover:border-slate-700 hover:text-white transition-all cursor-pointer">Property</button>
+                <button data-filter="restaurant" class="filter-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-medium bg-slate-900 border border-slate-800 text-slate-300 hover:border-slate-700 hover:text-white transition-all cursor-pointer">Restaurant</button>
+                <button data-filter="company" class="filter-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-medium bg-slate-900 border border-slate-800 text-slate-300 hover:border-slate-700 hover:text-white transition-all cursor-pointer">Company Profile</button>
+                <button data-filter="ecommerce" class="filter-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-medium bg-slate-900 border border-slate-800 text-slate-300 hover:border-slate-700 hover:text-white transition-all cursor-pointer">E-Commerce</button>
+                <button data-filter="course" class="filter-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-medium bg-slate-900 border border-slate-800 text-slate-300 hover:border-slate-700 hover:text-white transition-all cursor-pointer">Online Course</button>
+                <button data-filter="travel" class="filter-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-medium bg-slate-900 border border-slate-800 text-slate-300 hover:border-slate-700 hover:text-white transition-all cursor-pointer">Travel</button>
+            </div>
+
+            <!-- Grid 6 Kartu Proyek Portofolio -->
+            <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+                <!-- Dirender otomatis oleh JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 5. PAKET HARGA REGULER BERSIH (120K, 250K, 499K — TANPA PROMO/CORET)  -->
+    <!-- ===================================================================== -->
+    <section id="harga" class="py-20 border-t border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-sky-400 font-display font-bold text-xs uppercase tracking-widest">Investasi Website</span>
+                <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-white mt-2 mb-4">Pilihan Paket Pembuatan Website</h2>
+                <p class="text-slate-400 text-sm sm:text-base">Biaya transparan terima beres tanpa biaya tersembunyi. Seluruh paket sudah termasuk registrasi domain dan layanan hosting selama 1 tahun.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+                <!-- Paket 1: Paket Starter (Rp 120.000) -->
+                <div class="p-8 rounded-2xl bg-[#0f172a] border border-slate-800 flex flex-col justify-between">
+                    <div>
+                        <span class="px-3 py-1 rounded-lg bg-slate-800 text-slate-300 text-xs font-semibold">Terima Beres</span>
+                        <h3 class="font-display text-2xl font-bold text-white mt-4">Paket Starter</h3>
+                        <p class="text-slate-400 text-sm mt-2">Cocok untuk halaman penawaran tunggal, bio link usaha, atau profil ringkas.</p>
+                        
+                        <div class="my-6 pb-6 border-b border-slate-800">
+                            <span class="text-xs text-slate-400 block">Biaya Pembuatan</span>
+                            <span class="font-display text-3xl sm:text-4xl font-extrabold text-white">Rp 120.000</span>
+                        </div>
+
+                        <ul class="space-y-3.5 text-sm text-slate-300 mb-8">
+                            <li class="flex items-start gap-2.5">
+                                <svg class="w-5 h-5 text-sky-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span>Gratis Domain <strong>.my.id</strong> (1 Tahun)</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <svg class="w-5 h-5 text-sky-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span>Cloud Hosting & SSL (HTTPS)</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <svg class="w-5 h-5 text-sky-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span>Landing Page / Bio Link (1 Halaman)</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <svg class="w-5 h-5 text-sky-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span>Desain Responsif HP & Laptop</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <svg class="w-5 h-5 text-sky-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span>Tombol Integrasi WhatsApp</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <svg class="w-5 h-5 text-sky-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span>Revisi Desain 2x</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <button onclick="selectPackageAndScroll('Paket Starter — Rp 120.000', 'Landing Page')" class="w-full py-3.5 px-5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-display font-bold text-sm transition-colors cursor-pointer">
+                        Pilih Paket Ini
+                    </button>
+                </div>
+
+                <!-- Paket 2: Paket Bisnis (Rp 250.000) -->
+                <div class="relative p-8 rounded-2xl bg-[#0f172a] border-2 border-sky-500 shadow-2xl shadow-sky-500/10 flex flex-col justify-between">
+                    <div class="absolute -top-3.5 right-6 px-4 py-1 rounded-full bg-sky-500 text-slate-950 font-display text-xs font-extrabold uppercase tracking-wider shadow-lg">
+                        Paling Diminati
+                    </div>
+
+                    <div>
+                        <span class="px-3 py-1 rounded-lg bg-sky-500/10 text-sky-400 text-xs font-semibold">Terima Beres</span>
+                        <h3 class="font-display text-2xl font-bold text-white mt-4">Paket Bisnis</h3>
+                        <p class="text-slate-400 text-sm mt-2">Ideal untuk profil perusahaan, restoran, travel, maupun katalog jasa profesional.</p>
+                        
+                        <div class="my-6 pb-6 border-b border-slate-800">
+                            <span class="text-xs text-slate-400 block">Biaya Pembuatan</span>
+                            <span class="font-display text-3xl sm:text-4xl font-extrabold text-white">Rp 250.000</span>
+                        </div>
+
+                        <ul class="space-y-3.5 text-sm text-slate-200 mb-8">
+                            <li class="flex items-start gap-2.5">
+                                <svg class="w-5 h-5 text-sky-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span>Gratis Domain <strong>.biz.id</strong> / <strong>.web.id</strong> (1 Tahun)</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <svg class="w-5 h-5 text-sky-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span>Cloud Hosting & SSL (HTTPS)</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <svg class="w-5 h-5 text-sky-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span>Website Company Profile / Resto / Katalog (3–5 Halaman)</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <svg class="w-5 h-5 text-sky-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span>Galeri Foto & Integrasi Google Maps</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <svg class="w-5 h-5 text-sky-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span>Optimasi Kecepatan & SEO Dasar</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <svg class="w-5 h-5 text-sky-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span>Revisi Desain 3x</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <button onclick="selectPackageAndScroll('Paket Bisnis — Rp 250.000', 'Website Company Profile')" class="w-full py-3.5 px-5 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-display font-extrabold text-sm shadow-lg shadow-sky-500/20 transition-all cursor-pointer">
+                        Pilih Paket Ini
+                    </button>
+                </div>
+
+                <!-- Paket 3: Paket Pro (Rp 499.000) -->
+                <div class="p-8 rounded-2xl bg-[#0f172a] border border-slate-800 flex flex-col justify-between">
+                    <div>
+                        <span class="px-3 py-1 rounded-lg bg-slate-800 text-slate-300 text-xs font-semibold">Lengkap • Terima Beres</span>
+                        <h3 class="font-display text-2xl font-bold text-white mt-4">Paket Pro</h3>
+                        <p class="text-slate-400 text-sm mt-2">Dirancang untuk toko online, listing properti, kelas online, dan sistem keanggotaan.</p>
+                        
+                        <div class="my-6 pb-6 border-b border-slate-800">
+                            <span class="text-xs text-slate-400 block">Biaya Pembuatan</span>
+                            <span class="font-display text-3xl sm:text-4xl font-extrabold text-white">Rp 499.000</span>
+                        </div>
+
+                        <ul class="space-y-3.5 text-sm text-slate-300 mb-8">
+                            <li class="flex items-start gap-2.5">
+                                <svg class="w-5 h-5 text-sky-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span>Gratis Domain <strong>.biz.id</strong> / <strong>.web.id</strong> / <strong>.my.id</strong> (1 Tahun)</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <svg class="w-5 h-5 text-sky-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span>Hosting Performa Tinggi & SSL (HTTPS)</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <svg class="w-5 h-5 text-sky-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span>Website E-Commerce / Property / Course / Custom</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <svg class="w-5 h-5 text-sky-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span>Fitur Keranjang / Katalog Dinamis / Halaman Admin</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <svg class="w-5 h-5 text-sky-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span>Integrasi Checkout WhatsApp / Pembayaran</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <svg class="w-5 h-5 text-sky-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span>Prioritas Support & Revisi 5x</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <button onclick="selectPackageAndScroll('Paket Pro — Rp 499.000', 'Website E-Commerce')" class="w-full py-3.5 px-5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-display font-bold text-sm transition-colors cursor-pointer">
+                        Pilih Paket Ini
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 6. WORKFLOW SECTION (4 LANGKAH ALUR PEMESANAN)                        -->
+    <!-- ===================================================================== -->
+    <section id="alur-kerja" class="py-20 bg-[#0c1220] border-t border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="text-sky-400 font-display font-bold text-xs uppercase tracking-widest">Proses Transparan</span>
+                <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-white mt-2 mb-4">Alur Pemesanan Website</h2>
+                <p class="text-slate-400 text-sm sm:text-base">Tahapan kerja terstruktur mulai dari diskusi awal hingga website Anda resmi online dan siap digunakan.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Langkah 1 -->
+                <div class="p-6 rounded-2xl bg-[#0f172a] border border-slate-800 relative">
+                    <div class="w-11 h-11 rounded-xl bg-sky-500/10 border border-sky-500/30 text-sky-400 font-display font-extrabold text-base flex items-center justify-center mb-5">
+                        01
+                    </div>
+                    <h3 class="font-display text-lg font-bold text-white mb-2">Konsultasi Kebutuhan</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Diskusikan jenis website, nama domain yang diinginkan, serta materi konten usaha Anda bersama tim kami.</p>
+                </div>
+
+                <!-- Langkah 2 -->
+                <div class="p-6 rounded-2xl bg-[#0f172a] border border-slate-800 relative">
+                    <div class="w-11 h-11 rounded-xl bg-sky-500/10 border border-sky-500/30 text-sky-400 font-display font-extrabold text-base flex items-center justify-center mb-5">
+                        02
+                    </div>
+                    <h3 class="font-display text-lg font-bold text-white mb-2">Pembayaran DP 50%</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Melakukan pembayaran DP 50% untuk proses registrasi domain resmi, konfigurasi hosting, dan mulai perancangan desain.</p>
+                </div>
+
+                <!-- Langkah 3 -->
+                <div class="p-6 rounded-2xl bg-[#0f172a] border border-slate-800 relative">
+                    <div class="w-11 h-11 rounded-xl bg-sky-500/10 border border-sky-500/30 text-sky-400 font-display font-extrabold text-base flex items-center justify-center mb-5">
+                        03
+                    </div>
+                    <h3 class="font-display text-lg font-bold text-white mb-2">Preview & Revisi</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Kami mengirimkan tautan hasil pengerjaan sementara agar Anda dapat memeriksa tampilan dan mengajukan revisi sesuai paket.</p>
+                </div>
+
+                <!-- Langkah 4 -->
+                <div class="p-6 rounded-2xl bg-[#0f172a] border border-slate-800 relative">
+                    <div class="w-11 h-11 rounded-xl bg-sky-500/10 border border-sky-500/30 text-sky-400 font-display font-extrabold text-base flex items-center justify-center mb-5">
+                        04
+                    </div>
+                    <h3 class="font-display text-lg font-bold text-white mb-2">Pelunasan & Serah Terima</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Setelah desain disetujui dan pelunasan selesai, website langsung dipublikasikan penuh beserta panduan pengelolaan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 7. CONSULTATION / ORDER FORM & EXECUTIVE FOOTER                       -->
+    <!-- ===================================================================== -->
+    <section id="konsultasi" class="py-20 border-t border-slate-800/80">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div id="consult-card-wrapper" class="rounded-3xl bg-gradient-to-br from-[#0f172a] to-[#090d16] border border-slate-800 p-6 sm:p-10 lg:p-12 shadow-2xl transition-all duration-300">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                    <!-- Info Kontak Kiri -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <span class="text-sky-400 font-display font-bold text-xs uppercase tracking-widest">Formulir Pemesanan</span>
+                        <h2 class="font-display text-2xl sm:text-3xl font-extrabold text-white leading-tight">
+                            Mulai Bangun Website Bisnis Anda Sekarang
+                        </h2>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            Lengkapi data singkat di samping untuk mengirimkan detail pesanan Anda langsung ke WhatsApp atau Email resmi kami.
+                        </p>
+
+                        <div class="space-y-4 pt-2 border-t border-slate-800/80">
+                            <div class="flex items-center gap-3.5">
+                                <div class="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 shrink-0">
+                                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/></svg>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-400">WhatsApp Resmi</p>
+                                    <p id="contact-wa-text" class="text-sm font-bold text-white">0896-8957-6031</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-3.5">
+                                <div class="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 shrink-0">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-400">Email Resmi</p>
+                                    <p id="contact-email-text" class="text-sm font-bold text-white">fahrizalemmel@gmail.com</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form Input Kanan -->
+                    <div class="lg:col-span-7 bg-slate-950/80 border border-slate-800 rounded-2xl p-6">
+                        <form id="quick-consult-form" class="space-y-4">
+                            <!-- Notifikasi Paket Terpilih -->
+                            <div id="package-selected-banner" class="hidden px-4 py-2.5 rounded-xl bg-sky-500/10 border border-sky-500/30 text-sky-300 text-xs font-medium"></div>
+
+                            <div>
+                                <label for="client-name" class="block text-xs font-semibold text-slate-300 mb-1.5">Nama / Nama Usaha *</label>
+                                <input type="text" id="client-name" required placeholder="Contoh: Ahmad — PT Maju Bersama" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-white text-sm placeholder-slate-500 focus:outline-none focus:border-sky-500 transition-colors">
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="website-type" class="block text-xs font-semibold text-slate-300 mb-1.5">Jenis Website *</label>
+                                    <select id="website-type" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-white text-sm focus:outline-none focus:border-sky-500 transition-colors">
+                                        <option value="Landing Page">1. Landing Page</option>
+                                        <option value="Website Company Profile">2. Website Company Profile</option>
+                                        <option value="Website E-Commerce">3. Website E-Commerce</option>
+                                        <option value="Website Portfolio">4. Website Portfolio</option>
+                                        <option value="Website Online Course">5. Website Online Course</option>
+                                        <option value="Website Membership">6. Website Membership</option>
+                                        <option value="Website Property">7. Website Property</option>
+                                        <option value="Website Travel">8. Website Travel</option>
+                                        <option value="Website Restaurant">9. Website Restaurant</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label for="package-choice" class="block text-xs font-semibold text-slate-300 mb-1.5">Pilihan Paket *</label>
+                                    <select id="package-choice" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-white text-sm focus:outline-none focus:border-sky-500 transition-colors">
+                                        <option value="Paket Starter — Rp 120.000">Paket Starter — Rp 120.000</option>
+                                        <option value="Paket Bisnis — Rp 250.000" selected>Paket Bisnis — Rp 250.000</option>
+                                        <option value="Paket Pro — Rp 499.000">Paket Pro — Rp 499.000</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="client-notes" class="block text-xs font-semibold text-slate-300 mb-1.5">Catatan Singkat *</label>
+                                <textarea id="client-notes" rows="3" required placeholder="Tuliskan nama domain yang diinginkan atau gambaran singkat fitur website Anda..." class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-white text-sm placeholder-slate-500 focus:outline-none focus:border-sky-500 transition-colors"></textarea>
+                            </div>
+
+                            <!-- Kotak Pesan Validasi (Menggantikan alert()) -->
+                            <div id="form-feedback" class="hidden px-4 py-2.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs"></div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                                <button type="button" onclick="submitConsultation('whatsapp')" class="w-full py-3.5 px-4 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-display font-extrabold text-sm flex items-center justify-center gap-2 shadow-lg shadow-sky-500/20 transition-all cursor-pointer">
+                                    <span>Kirim via WhatsApp</span>
+                                </button>
+                                <button type="button" onclick="submitConsultation('email')" class="w-full py-3.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-display font-bold text-sm flex items-center justify-center gap-2 transition-colors cursor-pointer">
+                                    <span>Kirim via Email</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXECUTIVE FOOTER -->
+    <footer class="bg-[#060910] border-t border-slate-800/80 pt-14 pb-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 pb-10 border-b border-slate-800/80">
+                <!-- Kolom Brand & Logo Dinamis -->
+                <div>
+                    <div class="flex items-center gap-3.5 mb-4">
+                        <div id="footer-logo-slot" class="shrink-0">
+                            <!-- Dirender otomatis via JS -->
+                        </div>
+                        <div>
+                            <span id="footer-brand-name" class="font-display text-lg font-extrabold text-white block leading-none">
+                                ZHAA <span class="text-sky-400">WEBMAKER</span>
+                            </span>
+                            <span id="footer-tagline" class="text-[11px] text-slate-400 block mt-1">
+                                Jasa Pembuatan Website
+                            </span>
+                        </div>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Partner digital terpercaya untuk pembuatan website profesional yang cepat, responsif, dan siap mendukung pertumbuhan usaha Anda.
+                    </p>
+                </div>
+
+                <!-- Menu Navigasi -->
+                <div>
+                    <h4 class="font-display text-white font-bold text-sm uppercase tracking-wider mb-4">Navigasi</h4>
+                    <ul class="space-y-2.5 text-sm text-slate-400">
+                        <li><a href="#layanan" class="hover:text-sky-400 transition-colors">9 Layanan Website</a></li>
+                        <li><a href="#portofolio" class="hover:text-sky-400 transition-colors">Portofolio & Live Demo</a></li>
+                        <li><a href="#harga" class="hover:text-sky-400 transition-colors">Paket Harga</a></li>
+                        <li><a href="#alur-kerja" class="hover:text-sky-400 transition-colors">Alur Pemesanan</a></li>
+                    </ul>
+                </div>
+
+                <!-- Kontak Resmi -->
+                <div>
+                    <h4 class="font-display text-white font-bold text-sm uppercase tracking-wider mb-4">Kontak Resmi</h4>
+                    <ul class="space-y-2.5 text-sm text-slate-400">
+                        <li>WhatsApp: <a href="https://wa.me/6289689576031" target="_blank" class="text-white hover:text-sky-400 font-medium">0896-8957-6031</a></li>
+                        <li>Email: <a href="mailto:fahrizalemmel@gmail.com" class="text-white hover:text-sky-400 font-medium">fahrizalemmel@gmail.com</a></li>
+                        <li>Layanan: Senin – Sabtu (08.00 – 21.00 WIB)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+                <p>&copy; <span id="year-now">2026</span> ZHAA WEBMAKER. Hak Cipta Dilindungi Undang-Undang.</p>
+                <p>Jasa Pembuatan Website Profesional & Solusi Digital Bisnis.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FLOATING WHATSAPP BUTTON -->
+    <button onclick="openWhatsApp('Halo ZHAA WEBMAKER! Saya ingin berkonsultasi mengenai pembuatan website.')" aria-label="Chat WhatsApp ZHAA WEBMAKER" class="fixed bottom-6 right-6 z-40 flex items-center gap-2.5 px-4 py-3.5 rounded-full bg-sky-500 hover:bg-sky-400 text-slate-950 font-display font-extrabold shadow-2xl shadow-sky-500/30 transition-transform hover:scale-105 cursor-pointer">
+        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/></svg>
+        <span class="hidden sm:inline text-sm">WhatsApp</span>
+    </button>
+
+    <!-- ===================================================================== -->
+    <!-- MODAL INTERAKTIF LIVE DEMO (MODE DESKTOP & MOBILE)                    -->
+    <!-- ===================================================================== -->
+    <div id="preview-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/85 backdrop-blur-md p-3 sm:p-6">
+        <div class="bg-[#0f172a] border border-slate-700 rounded-2xl max-w-5xl w-full max-h-[92vh] flex flex-col overflow-hidden shadow-2xl">
+            <!-- Modal Header Bar -->
+            <div class="px-4 py-3 bg-slate-950 border-b border-slate-800 flex flex-wrap items-center justify-between gap-3">
+                <div class="flex items-center gap-2">
+                    <span class="w-3 h-3 rounded-full bg-slate-700"></span>
+                    <span class="w-3 h-3 rounded-full bg-slate-700"></span>
+                    <span class="w-3 h-3 rounded-full bg-sky-500"></span>
+                    <span id="modal-domain-label" class="ml-2 px-3 py-1 rounded-md bg-slate-900 border border-slate-800 text-xs font-mono text-slate-400">https://demo.zhaawebmaker.id</span>
+                </div>
+
+                <!-- Switcher Mode Desktop / Mobile -->
+                <div class="flex items-center gap-1.5 bg-slate-900 p-1 rounded-xl border border-slate-800">
+                    <button id="view-desktop-btn" onclick="setPreviewDevice('desktop')" class="px-3 py-1.5 rounded-lg bg-sky-500 text-slate-950 font-display font-bold text-xs flex items-center gap-1.5 cursor-pointer transition-all">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                        <span>Desktop</span>
+                    </button>
+                    <button id="view-mobile-btn" onclick="setPreviewDevice('mobile')" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white font-display font-semibold text-xs flex items-center gap-1.5 cursor-pointer transition-all">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                        <span>Mobile</span>
+                    </button>
+                </div>
+
+                <!-- Tombol Tutup -->
+                <button onclick="closePreviewModal()" aria-label="Tutup Preview" class="p-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white transition-colors cursor-pointer">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+
+            <!-- Area Simulasi Viewport Interaktif -->
+            <div class="flex-1 overflow-y-auto p-4 sm:p-6 bg-[#090d16] flex justify-center">
+                <div id="preview-frame-container" class="w-full transition-all duration-300">
+                    <!-- Konten simulasi interaktif dirender oleh JavaScript -->
+                </div>
+            </div>
+
+            <!-- Modal Footer CTA -->
+            <div class="px-6 py-4 bg-slate-950 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3">
+                <p class="text-xs sm:text-sm text-slate-400">Ingin memiliki website dengan desain dan fitur interaktif seperti ini?</p>
+                <button id="modal-order-similar-btn" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-display font-extrabold text-sm flex items-center justify-center gap-2 cursor-pointer transition-colors">
+                    <span>Pesan Website Seperti Ini</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- SCRIPT KONFIGURASI & LOGIKA INTERAKTIF ZHAA WEBMAKER                  -->
+    <!-- ===================================================================== -->
+    <script>
+        // ==========================================================
+        // TEMPAT GANTI LINK LOGO & GAMBAR LATAR TRANSPARAN
+        // ==========================================================
+        const SITE_CONFIG = {
+            brandName: "ZHAA WEBMAKER",
+            tagline: "Jasa Pembuatan Website",
+            whatsappNumber: "6289689576031",
+            displayPhone: "0896-8957-6031",
+            email: "fahrizalemmel@gmail.com",
+
+            // Ganti dengan nama file logo (misal: "logo.png") atau URL gambar logo Anda.
+            // Jika dikosongkan (""), otomatis tampil logo vektor geometris ZW < > bawaan.
+            logoImage: "",
+
+            // Ganti link foto latar belakang transparan halaman utama (bagian atas saja) di sini
+            heroBgImage: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1600&q=80",
+
+            // Ganti link gambar transparan background demo di sini
+            demoImages: {
+                property: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80",
+                restaurant: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80",
+                company: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
+                ecommerce: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1200&q=80",
+                course: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80",
+                travel: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1200&q=80"
+            }
+        };
+        // ==========================================================
+
+        // 1. RENDER LOGO DINAMIS (SVG GEOMETRIS ZW < > ATAU GAMBAR KUSTOM)
+        function getDefaultGeometricLogoSVG(sizeClass = "w-10 h-10") {
+            return `
+                <div class="${sizeClass} rounded-xl bg-slate-900 border border-slate-700/80 flex items-center justify-center shadow-inner">
+                    <svg class="w-7 h-7" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Sky-blue code brackets < > -->
+                        <path d="M7.5 13L3.5 18L7.5 23" stroke="#38bdf8" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M28.5 13L32.5 18L28.5 23" stroke="#38bdf8" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <!-- Intertwined ZW Monogram -->
+                        <path d="M10.5 11.5H19L11.5 24.5H20" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M17.5 14L20 24.5L22.8 18L25.5 24.5" stroke="#38bdf8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            `;
+        }
+
+        function renderBrandIdentity() {
+            const navSlot = document.getElementById('navbar-logo-slot');
+            const footerSlot = document.getElementById('footer-logo-slot');
+            const logoUrl = (SITE_CONFIG.logoImage || "").trim();
+
+            if (logoUrl !== "") {
+                const imgHtml = `<img src="${logoUrl}" alt="${SITE_CONFIG.brandName}" class="w-10 h-10 rounded-xl object-cover border border-slate-700/80 bg-slate-900" onerror="this.outerHTML=getDefaultGeometricLogoSVG('w-10 h-10')">`;
+                if (navSlot) navSlot.innerHTML = imgHtml;
+                if (footerSlot) footerSlot.innerHTML = imgHtml;
+            } else {
+                if (navSlot) navSlot.innerHTML = getDefaultGeometricLogoSVG('w-10 h-10');
+                if (footerSlot) footerSlot.innerHTML = getDefaultGeometricLogoSVG('w-10 h-10');
+            }
+
+            // Terapkan Gambar Latar Belakang Transparan Hanya di Hero Section Atas
+            const heroBgEl = document.getElementById('hero-bg-layer');
+            if (heroBgEl && SITE_CONFIG.heroBgImage) {
+                heroBgEl.style.backgroundImage = `url('${SITE_CONFIG.heroBgImage}')`;
+            }
+
+            document.getElementById('year-now').textContent = new Date().getFullYear();
+        }
+
+        // Helper Buka WhatsApp
+        function openWhatsApp(message) {
+            const url = `https://wa.me/${SITE_CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+
+        // 2. HERO DASHBOARD METRIC SWITCHER
+        function switchHeroMetric(type) {
+            const btnSpeed = document.getElementById('btn-metric-speed');
+            const btnSeo = document.getElementById('btn-metric-seo');
+            const scoreEl = document.getElementById('metric-score');
+            const titleEl = document.getElementById('metric-title');
+            const descEl = document.getElementById('metric-desc');
+
+            if (type === 'speed') {
+                btnSpeed.className = "px-2.5 py-1 rounded-lg bg-sky-500 text-slate-950 font-bold text-xs cursor-pointer transition-colors";
+                btnSeo.className = "px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 font-semibold text-xs cursor-pointer transition-colors";
+                scoreEl.textContent = "99";
+                titleEl.textContent = "Kecepatan Muat Halaman";
+                descEl.textContent = "Ringan & stabil diakses lewat jaringan seluler";
+            } else {
+                btnSeo.className = "px-2.5 py-1 rounded-lg bg-sky-500 text-slate-950 font-bold text-xs cursor-pointer transition-colors";
+                btnSpeed.className = "px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 font-semibold text-xs cursor-pointer transition-colors";
+                scoreEl.textContent = "98";
+                titleEl.textContent = "Struktur SEO Teroptimasi";
+                descEl.textContent = "Meta tag, semantic HTML & indeks Google siap pakai";
+            }
+        }
+
+        // 3. DATA & RENDER 9 JENIS LAYANAN (GRID 3x3)
+        const SERVICES_DATA = [
+            {
+                title: "Landing Page",
+                desc: "Halaman penawaran tunggal dengan alur informasi persuasif untuk mendukung kampanye iklan maupun peluncuran produk.",
+                svg: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M13 10V3L4 14h7v7l9-11h-7z"/>`
+            },
+            {
+                title: "Website Company Profile",
+                desc: "Profil digital resmi bagi perusahaan, klinik, maupun konsultan guna memperkuat kepercayaan calon klien dan mitra kerja.",
+                svg: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>`
+            },
+            {
+                title: "Website E-Commerce",
+                desc: "Toko online mandiri dengan katalog produk terstruktur, keranjang belanja, dan sistem pemesanan langsung tanpa potongan komisi.",
+                svg: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>`
+            },
+            {
+                title: "Website Portfolio",
+                desc: "Etalase digital elegan untuk arsitek, desainer, fotografer, serta profesional dalam menampilkan rekam jejak karya terbaik.",
+                svg: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>`
+            },
+            {
+                title: "Website Online Course",
+                desc: "Platform pembelajaran daring untuk menjual materi kelas video, modul panduan, silabus kursus, dan akses khusus peserta.",
+                svg: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"/>`
+            },
+            {
+                title: "Website Membership",
+                desc: "Portal komunitas dan keanggotaan eksklusif yang dilengkapi sistem registrasi anggota serta pengaturan hak akses konten.",
+                svg: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>`
+            },
+            {
+                title: "Website Property",
+                desc: "Katalog listing properti bagi developer perumahan & agen real estate lengkap dengan spesifikasi unit dan jadwal survei.",
+                svg: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>`
+            },
+            {
+                title: "Website Travel",
+                desc: "Website agen perjalanan wisata, paket umroh, dan sewa kendaraan lengkap dengan rincian itinerary dan pemesanan cepat.",
+                svg: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>`
+            },
+            {
+                title: "Website Restaurant",
+                desc: "Website kafe, restoran, dan katering dengan daftar menu digital interaktif, peta lokasi cabang, dan reservasi meja.",
+                svg: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>`
+            }
+        ];
+
+        function renderServicesGrid() {
+            const grid = document.getElementById('services-grid');
+            grid.innerHTML = SERVICES_DATA.map((service, idx) => `
+                <div class="p-6 rounded-2xl bg-[#0f172a] border border-slate-800 hover:border-sky-500/50 transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex items-center justify-between mb-5">
+                            <div class="w-12 h-12 rounded-xl bg-sky-500/10 border border-sky-500/20 text-sky-400 flex items-center justify-center group-hover:bg-sky-500 group-hover:text-slate-950 transition-colors">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">${service.svg}</svg>
+                            </div>
+                            <span class="text-xs font-mono text-slate-500">0${idx + 1}</span>
+                        </div>
+                        <h3 class="font-display text-lg font-bold text-white mb-2">${service.title}</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">${service.desc}</p>
+                    </div>
+                    <button onclick="openWhatsApp('Halo ZHAA WEBMAKER! Saya ingin berkonsultasi untuk pembuatan *${service.title}*.')" class="w-full py-2.5 px-4 rounded-xl bg-slate-900 hover:bg-sky-500/15 border border-slate-800 hover:border-sky-500/40 text-sky-400 font-display font-bold text-xs sm:text-sm transition-all flex items-center justify-center gap-2 cursor-pointer">
+                        <span>Konsultasi Layanan</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        // 4. DATA & RENDER 6 PROYEK PORTOFOLIO DENGAN LATAR TRANSPARAN & LIVE DEMO INTERAKTIF
+        const PORTFOLIO_PROJECTS = [
+            {
+                id: "property",
+                category: "property",
+                badge: "Website Property",
+                title: "Hunian Asri Residence",
+                domain: "hunianasri.my.id",
+                desc: "Katalog perumahan modern lengkap dengan filter tipe hunian, spesifikasi luas bangunan, simulasi cicilan KPR, dan jadwal survei lokasi.",
+                tags: ["Filter Unit", "Simulasi KPR", "Jadwal Survei"],
+                accentBg: "bg-emerald-500 text-slate-950",
+                accentBorder: "border-emerald-500/40",
+                heroHeading: "Hunian Minimalis Modern di Kawasan Asri & Strategis",
+                heroSub: "Akses 10 menit menuju pintu tol utama. Pilih tipe unit sesuai kebutuhan keluarga Anda.",
+                items: [
+                    { title: "Tipe Magnolia (1 Lantai)", spec: "LB 45 m² / LT 72 m² • 2 KT", price: "Rp 480 Jt", priceNum: 480000000, tag: "1 Lantai" },
+                    { title: "Tipe Lavender (2 Lantai)", spec: "LB 68 m² / LT 90 m² • 3 KT", price: "Rp 690 Jt", priceNum: 690000000, tag: "2 Lantai" },
+                    { title: "Tipe Edelweiss Hook (2 Lantai)", spec: "LB 85 m² / LT 110 m² • 4 KT", price: "Rp 850 Jt", priceNum: 850000000, tag: "2 Lantai" }
+                ]
+            },
+            {
+                id: "restaurant",
+                category: "restaurant",
+                badge: "Website Restaurant",
+                title: "Kafe Nusantara & Roastery",
+                domain: "kafenusantara.biz.id",
+                desc: "Website restoran dan kedai kopi modern dilengkapi menu digital interaktif, perhitungan total pesanan otomatis, dan reservasi meja.",
+                tags: ["Menu Digital", "Hitung Pesanan", "Reservasi Meja"],
+                accentBg: "bg-amber-400 text-slate-950",
+                accentBorder: "border-amber-400/40",
+                heroHeading: "Cita Rasa Kopi Pilihan & Hidangan Khas Nusantara",
+                heroSub: "Nikmati sajian hangat langsung di tempat atau pesan paket hidangan untuk acara kantor dan keluarga.",
+                items: [
+                    { title: "Es Kopi Susu Gula Aren", spec: "Espresso Arabika + Susu Segar", price: "Rp 25.000", priceNum: 25000, tag: "Minuman" },
+                    { title: "Nasi Goreng Kampoeng Spesial", spec: "Ayam Suwir, Telur Mata Sapi & Acar", price: "Rp 38.000", priceNum: 38000, tag: "Makanan" },
+                    { title: "Paket Katering Rapat (Box)", spec: "Nasi, Lauk Utama, Sayur & Air Mineral", price: "Rp 45.000", priceNum: 45000, tag: "Katering" }
+                ]
+            },
+            {
+                id: "company",
+                category: "company",
+                badge: "Website Company Profile",
+                title: "PT Arsitek Utama Konstruksi",
+                domain: "arsitekutama.biz.id",
+                desc: "Profil korporat jasa arsitektur dan kontraktor bangunan dengan tab layanan interaktif, portofolio proyek selesai, dan pengajuan RAB.",
+                tags: ["Profil Korporat", "Tab Layanan", "Pengajuan RAB"],
+                accentBg: "bg-sky-400 text-slate-950",
+                accentBorder: "border-sky-400/40",
+                heroHeading: "Solusi Perencanaan Arsitektur & Konstruksi Terpercaya",
+                heroSub: "Mendampingi pembangunan hunian residensial, gedung perkantoran, hingga renovasi ruang komersial.",
+                items: [
+                    { title: "Perencanaan Desain Arsitektur", spec: "Gambar Kerja 2D, Render 3D & Estimasi Biaya", price: "Konsultasi", priceNum: 0, tag: "Arsitektur" },
+                    { title: "Kontraktor Bangun Baru", spec: "Pengerjaan Struktur hingga Finishing Rapi", price: "Bergaransi", priceNum: 0, tag: "Kontraktor" },
+                    { title: "Desain & Renovasi Interior", spec: "Penataan Ruang Kantor, Kafe & Rumah Tinggal", price: "Custom", priceNum: 0, tag: "Interior" }
+                ]
+            },
+            {
+                id: "ecommerce",
+                category: "ecommerce",
+                badge: "Website E-Commerce",
+                title: "TokoGadget Official Store",
+                domain: "tokogadget.web.id",
+                desc: "Toko online perlengkapan kerja dan aksesoris gadget dengan simulasi keranjang belanja aktif serta perhitungan total checkout instan.",
+                tags: ["Katalog Produk", "Keranjang Aktif", "Checkout WA"],
+                accentBg: "bg-blue-500 text-white",
+                accentBorder: "border-blue-500/40",
+                heroHeading: "Perlengkapan Kerja & Aksesoris Gadget Original",
+                heroSub: "Produk bergaransi resmi dengan pengiriman cepat ke seluruh kota di Indonesia.",
+                items: [
+                    { title: "Mechanical Keyboard Wireless", spec: "Switch Tactile • Dual Mode Bluetooth/USB", price: "Rp 650.000", priceNum: 650000, tag: "Aksesoris" },
+                    { title: "USB-C Multiport Hub 8-in-1", spec: "HDMI 4K, PD 100W & Gigabit Ethernet", price: "Rp 320.000", priceNum: 320000, tag: "Konektivitas" },
+                    { title: "Ergonomic Wireless Mouse", spec: "Silent Click • Baterai Tahan 6 Bulan", price: "Rp 240.000", priceNum: 240000, tag: "Aksesoris" }
+                ]
+            },
+            {
+                id: "course",
+                category: "course",
+                badge: "Website Online Course",
+                title: "Akademi Skill Digital",
+                domain: "akademidigital.biz.id",
+                desc: "Portal kelas online dengan pratinjau silabus materi interaktif, daftar kurikulum video terstruktur, dan pendaftaran peserta.",
+                tags: ["Kurikulum Video", "Pratinjau Modul", "Akses Member"],
+                accentBg: "bg-indigo-400 text-slate-950",
+                accentBorder: "border-indigo-400/40",
+                heroHeading: "Tingkatkan Keahlian Digital Praktis Bersama Praktisi",
+                heroSub: "Belajar fleksibel kapan saja melalui rekaman video HD, studi kasus nyata, dan grup diskusi.",
+                items: [
+                    { title: "Modul 01: Fundamental Pemasaran Digital", spec: "6 Video Materi • Studi Kasus UMKM", price: "Gratis Preview", priceNum: 0, tag: "Modul 1" },
+                    { title: "Modul 02: Desain Konten & Branding Visual", spec: "8 Video Materi • Template Siap Pakai", price: "Terdaftar", priceNum: 0, tag: "Modul 2" },
+                    { title: "Modul 03: Optimasi Konversi Penjualan", spec: "5 Video Materi • Sertifikat Kelulusan", price: "Terdaftar", priceNum: 0, tag: "Modul 3" }
+                ]
+            },
+            {
+                id: "travel",
+                category: "travel",
+                badge: "Website Travel",
+                title: "Nusantara Wisata Travel",
+                domain: "nusantarawisata.biz.id",
+                desc: "Website agen wisata dan tour domestik dengan kalkulator estimasi biaya berdasarkan jumlah peserta serta rincian jadwal perjalanan.",
+                tags: ["Paket Tour", "Hitung Peserta", "Itinerary Jelas"],
+                accentBg: "bg-teal-400 text-slate-950",
+                accentBorder: "border-teal-400/40",
+                heroHeading: "Jelajahi Destinasi Terbaik Indonesia Tanpa Ribet",
+                heroSub: "Tersedia paket wisata keluarga, private trip, maupun perjalanan rombongan perusahaan.",
+                items: [
+                    { title: "Nusa Penida One Day Trip", spec: "Tiket Fastboat, Makan Siang & Dokumentasi", price: "Rp 450.000/org", priceNum: 450000, tag: "1 Hari" },
+                    { title: "Paket Liburan Bali 3 Hari 2 Malam", spec: "Hotel Bintang 3, Transportasi & Tiket Wisata", price: "Rp 1.850.000/org", priceNum: 1850000, tag: "3H2M" },
+                    { title: "Sewa Mobil Wisata + Driver Lokal", spec: "Durasi 12 Jam Termasuk BBM", price: "Rp 550.000/unit", priceNum: 550000, tag: "Transport" }
+                ]
+            }
+        ];
+
+        function renderPortfolioGrid(filter = 'all') {
+            const grid = document.getElementById('portfolio-grid');
+            const filtered = filter === 'all'
+                ? PORTFOLIO_PROJECTS
+                : PORTFOLIO_PROJECTS.filter(item => item.category === filter);
+
+            grid.innerHTML = filtered.map(project => {
+                const bgImageUrl = SITE_CONFIG.demoImages[project.id] || "";
+                const tagsHtml = project.tags.map(t => `
+                    <span class="px-2.5 py-1 rounded-md bg-slate-950/90 border border-slate-800 text-slate-300 text-[11px] font-medium">${t}</span>
+                `).join('');
+
+                return `
+                    <div class="relative rounded-2xl bg-[#0f172a] border border-slate-800 hover:border-sky-500/50 overflow-hidden flex flex-col justify-between transition-all duration-300 group">
+                        <!-- Lapisan Gambar Latar Belakang Transparan di Kartu Portofolio -->
+                        <div class="absolute inset-0 bg-cover bg-center opacity-20 group-hover:opacity-25 group-hover:scale-105 transition-all duration-500 pointer-events-none" style="background-image: url('${bgImageUrl}');"></div>
+                        <div class="absolute inset-0 bg-gradient-to-b from-[#0f172a]/70 via-[#0f172a]/88 to-[#0f172a] pointer-events-none"></div>
+
+                        <div class="relative z-10">
+                            <!-- Mini Browser Preview Bar -->
+                            <div class="p-3.5 pb-0">
+                                <div class="rounded-xl bg-[#090d16]/85 backdrop-blur-sm border border-slate-800/90 overflow-hidden">
+                                    <div class="px-3 py-2 bg-slate-950/90 border-b border-slate-800 flex items-center justify-between">
+                                        <div class="flex items-center gap-1">
+                                            <span class="w-2 h-2 rounded-full bg-slate-700"></span>
+                                            <span class="w-2 h-2 rounded-full bg-slate-700"></span>
+                                            <span class="w-2 h-2 rounded-full bg-sky-400"></span>
+                                        </div>
+                                        <span class="text-[10px] font-mono text-slate-400">${project.domain}</span>
+                                    </div>
+
+                                    <!-- Mini Hero Preview dengan Foto Transparan -->
+                                    <div class="relative p-4 overflow-hidden">
+                                        <div class="absolute inset-0 bg-cover bg-center opacity-30 pointer-events-none" style="background-image: url('${bgImageUrl}');"></div>
+                                        <div class="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/70 to-slate-950/40 pointer-events-none"></div>
+                                        
+                                        <div class="relative z-10 space-y-2">
+                                            <div class="flex items-center justify-between">
+                                                <span class="text-[10px] font-bold uppercase tracking-wider text-white/90">${project.title}</span>
+                                                <span class="px-2 py-0.5 rounded text-[9px] font-bold ${project.accentBg}">Demo</span>
+                                            </div>
+                                            <p class="font-display text-xs sm:text-sm font-bold text-white leading-snug line-clamp-2">
+                                                ${project.heroHeading}
+                                            </p>
+                                            <div class="grid grid-cols-3 gap-1.5 pt-1">
+                                                ${project.items.map(it => `
+                                                    <div class="p-1.5 rounded bg-black/55 border border-white/10">
+                                                        <p class="text-[9px] text-white font-semibold truncate">${it.title}</p>
+                                                        <p class="text-[8px] text-sky-300 truncate mt-0.5">${it.price}</p>
+                                                    </div>
+                                                `).join('')}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Detail Informasi Proyek -->
+                            <div class="p-6">
+                                <span class="inline-block px-2.5 py-1 rounded-lg bg-sky-500/15 border border-sky-500/25 text-sky-400 text-xs font-semibold mb-2.5">
+                                    ${project.badge}
+                                </span>
+                                <h3 class="font-display text-lg font-bold text-white mb-2">${project.title}</h3>
+                                <p class="text-slate-300 text-sm leading-relaxed mb-4">${project.desc}</p>
+                                <div class="flex flex-wrap gap-1.5">
+                                    ${tagsHtml}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tombol Live Demo Interaktif -->
+                        <div class="relative z-10 px-6 pb-6 pt-1">
+                            <button onclick="openLiveDemo('${project.id}')" class="w-full py-3 px-4 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-display font-extrabold text-xs sm:text-sm shadow-lg shadow-sky-500/15 transition-all flex items-center justify-center gap-2 cursor-pointer">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                                <span>Live Demo Interaktif</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Filter Tab Handler
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => {
+                    b.className = "filter-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-medium bg-slate-900 border border-slate-800 text-slate-300 hover:border-slate-700 hover:text-white transition-all cursor-pointer";
+                });
+                btn.className = "filter-btn active px-4 py-2.5 rounded-xl text-xs sm:text-sm font-display font-bold bg-sky-500 text-slate-950 shadow-lg shadow-sky-500/20 transition-all cursor-pointer";
+                renderPortfolioGrid(btn.getAttribute('data-filter'));
+            });
+        });
+
+        // 5. MODAL LIVE DEMO INTERAKTIF (DENGAN BACKGROUND TRANSPARAN & FITUR INTERAKTIF)
+        const previewModal = document.getElementById('preview-modal');
+        const previewContainer = document.getElementById('preview-frame-container');
+        const modalDomainLabel = document.getElementById('modal-domain-label');
+        const modalOrderSimilarBtn = document.getElementById('modal-order-similar-btn');
+
+        // State interaksi sementara di dalam modal demo
+        let demoState = {
+            propertyFilter: 'Semua',
+            cartCount: 0,
+            cartTotal: 0,
+            activeServiceIdx: 0,
+            activeModuleIdx: 0,
+            travelPax: 2
+        };
+
+        function formatRupiah(angka) {
+            return 'Rp ' + angka.toLocaleString('id-ID');
+        }
+
+        function openLiveDemo(projectId) {
+            const project = PORTFOLIO_PROJECTS.find(p => p.id === projectId);
+            if (!project) return;
+
+            // Reset state interaksi saat membuka demo baru
+            demoState = {
+                propertyFilter: 'Semua',
+                cartCount: 0,
+                cartTotal: 0,
+                activeServiceIdx: 0,
+                activeModuleIdx: 0,
+                travelPax: 2
+            };
+
+            modalDomainLabel.textContent = `https://${project.domain}`;
+            setPreviewDevice('desktop');
+            renderDemoContent(project);
+
+            modalOrderSimilarBtn.onclick = () => {
+                openWhatsApp(`Halo ZHAA WEBMAKER! Saya sudah mencoba simulasi Live Demo *${project.title}* (${project.badge}) dan ingin memesan website seperti ini.`);
+            };
+
+            previewModal.classList.remove('hidden');
+            previewModal.classList.add('flex');
+        }
+
+        function renderDemoContent(project) {
+            const bgImg = SITE_CONFIG.demoImages[project.id] || "";
+            let interactiveSectionHtml = "";
+
+            // Bangun kontrol & daftar interaktif sesuai jenis demo
+            if (project.id === 'property') {
+                const units = demoState.propertyFilter === 'Semua'
+                    ? project.items
+                    : project.items.filter(u => u.tag === demoState.propertyFilter);
+
+                interactiveSectionHtml = `
+                    <div class="space-y-4">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <p class="text-xs font-bold uppercase tracking-wider text-slate-300">Filter Tipe Unit Properti:</p>
+                            <div class="flex gap-1.5">
+                                ${['Semua', '1 Lantai', '2 Lantai'].map(tab => `
+                                    <button onclick="updatePropertyDemoFilter('${tab}')" class="px-3 py-1 rounded-lg text-xs font-bold cursor-pointer transition-colors ${demoState.propertyFilter === tab ? project.accentBg : 'bg-slate-800 text-slate-300 hover:bg-slate-700'}">
+                                        ${tab}
+                                    </button>
+                                `).join('')}
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 gap-3">
+                            ${units.map(unit => `
+                                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                                    <div>
+                                        <span class="px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-400 text-[10px] font-bold">${unit.tag}</span>
+                                        <p class="font-display font-bold text-white text-sm mt-1">${unit.title}</p>
+                                        <p class="text-xs text-slate-400 mt-0.5">${unit.spec}</p>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <span class="font-display font-extrabold text-emerald-400 text-sm">${unit.price}</span>
+                                        <button onclick="showDemoToast('Permintaan jadwal survei untuk ${unit.title} berhasil disimulasikan!')" class="px-3 py-1.5 rounded-lg ${project.accentBg} text-xs font-bold cursor-pointer">
+                                            Jadwal Survei
+                                        </button>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            } else if (project.id === 'restaurant' || project.id === 'ecommerce') {
+                interactiveSectionHtml = `
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-3.5 rounded-xl bg-slate-900 border border-slate-800">
+                            <span class="text-xs font-semibold text-slate-300">Simulasi Keranjang / Pesanan:</span>
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs font-bold text-white">${demoState.cartCount} Item • <span class="text-sky-400">${formatRupiah(demoState.cartTotal)}</span></span>
+                                ${demoState.cartCount > 0 ? `<button onclick="resetDemoCart('${project.id}')" class="text-[11px] text-rose-400 hover:underline cursor-pointer">Reset</button>` : ''}
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 gap-3">
+                            ${project.items.map(item => `
+                                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 flex items-center justify-between gap-3">
+                                    <div>
+                                        <p class="font-display font-bold text-white text-sm">${item.title}</p>
+                                        <p class="text-xs text-slate-400 mt-0.5">${item.spec}</p>
+                                        <p class="text-xs font-bold text-sky-400 mt-1">${item.price}</p>
+                                    </div>
+                                    <button onclick="addDemoCartItem('${project.id}', ${item.priceNum}, '${item.title}')" class="px-3.5 py-2 rounded-lg ${project.accentBg} text-xs font-bold shrink-0 cursor-pointer">
+                                        + Tambah
+                                    </button>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            } else if (project.id === 'company') {
+                const activeItem = project.items[demoState.activeServiceIdx];
+                interactiveSectionHtml = `
+                    <div class="space-y-4">
+                        <div class="flex flex-wrap gap-2">
+                            ${project.items.map((it, i) => `
+                                <button onclick="switchCompanyDemoTab(${i})" class="px-3.5 py-2 rounded-xl text-xs font-bold cursor-pointer transition-colors ${demoState.activeServiceIdx === i ? project.accentBg : 'bg-slate-900 border border-slate-800 text-slate-300'}">
+                                    ${it.tag}
+                                </button>
+                            `).join('')}
+                        </div>
+                        <div class="p-5 rounded-xl bg-slate-900/90 border border-slate-800 space-y-2">
+                            <span class="text-[11px] font-bold uppercase text-sky-400">Detail Layanan Perusahaan</span>
+                            <h4 class="font-display text-base font-bold text-white">${activeItem.title}</h4>
+                            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">${activeItem.spec}. Tim insinyur dan arsitek kami siap memberikan pendampingan penuh mulai dari survei lokasi hingga serah terima proyek.</p>
+                            <div class="pt-2">
+                                <button onclick="showDemoToast('Form pengajuan konsultasi ${activeItem.title} siap dihubungkan ke WhatsApp perusahaan!')" class="px-4 py-2 rounded-lg ${project.accentBg} text-xs font-bold cursor-pointer">
+                                    Ajukan Konsultasi Proyek
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (project.id === 'course') {
+                interactiveSectionHtml = `
+                    <div class="space-y-3">
+                        <p class="text-xs font-bold uppercase tracking-wider text-slate-300">Klik Modul untuk Melihat Silabus Materi:</p>
+                        ${project.items.map((mod, idx) => `
+                            <div onclick="switchCourseDemoModule(${idx})" class="p-4 rounded-xl bg-slate-900/90 border ${demoState.activeModuleIdx === idx ? 'border-indigo-400' : 'border-slate-800'} cursor-pointer transition-colors">
+                                <div class="flex items-center justify-between gap-2">
+                                    <p class="font-display font-bold text-white text-sm">${mod.title}</p>
+                                    <span class="px-2.5 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 text-[11px] font-semibold">${mod.price}</span>
+                                </div>
+                                <p class="text-xs text-slate-400 mt-1">${mod.spec}</p>
+                                ${demoState.activeModuleIdx === idx ? `
+                                    <div class="mt-3 pt-3 border-t border-slate-800 text-xs text-indigo-200 flex items-center justify-between">
+                                        <span>Status: Video HD & Modul PDF Siap Diakses</span>
+                                        <span class="font-bold underline">Putar Materi &rarr;</span>
+                                    </div>
+                                ` : ''}
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            } else if (project.id === 'travel') {
+                interactiveSectionHtml = `
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-3.5 rounded-xl bg-slate-900 border border-slate-800">
+                            <span class="text-xs font-semibold text-slate-300">Jumlah Peserta Tour:</span>
+                            <div class="flex items-center gap-2.5">
+                                <button onclick="updateTravelPax(-1)" class="w-7 h-7 rounded-lg bg-slate-800 text-white font-bold cursor-pointer">-</button>
+                                <span class="text-sm font-bold text-teal-400">${demoState.travelPax} Orang</span>
+                                <button onclick="updateTravelPax(1)" class="w-7 h-7 rounded-lg bg-slate-800 text-white font-bold cursor-pointer">+</button>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 gap-3">
+                            ${project.items.map(pkg => `
+                                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                                    <div>
+                                        <span class="px-2 py-0.5 rounded bg-teal-500/15 text-teal-300 text-[10px] font-bold">${pkg.tag}</span>
+                                        <p class="font-display font-bold text-white text-sm mt-1">${pkg.title}</p>
+                                        <p class="text-xs text-slate-400 mt-0.5">${pkg.spec}</p>
+                                    </div>
+                                    <div class="text-left sm:text-right shrink-0">
+                                        <p class="text-[11px] text-slate-400">Estimasi (${demoState.travelPax} Org):</p>
+                                        <p class="font-display font-extrabold text-teal-400 text-sm">${formatRupiah(pkg.priceNum * demoState.travelPax)}</p>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+
+            previewContainer.innerHTML = `
+                <div class="relative rounded-2xl border border-slate-800 bg-[#0f172a] overflow-hidden shadow-xl">
+                    <!-- Lapisan Gambar Transparan Menyeluruh di Belakang Halaman Demo -->
+                    <div class="absolute inset-0 bg-cover bg-center opacity-15 pointer-events-none" style="background-image: url('${bgImg}');"></div>
+                    <div class="absolute inset-0 bg-gradient-to-b from-slate-950/60 via-[#0f172a]/90 to-[#0f172a] pointer-events-none"></div>
+
+                    <!-- Simulated Website Header -->
+                    <div class="relative z-10 px-5 py-4 bg-slate-950/85 backdrop-blur-md border-b border-white/10 flex items-center justify-between">
+                        <span class="font-display font-extrabold text-white text-sm sm:text-base">${project.title}</span>
+                        <span class="px-3 py-1.5 rounded-lg ${project.accentBg} text-xs font-bold">Hubungi Kami</span>
+                    </div>
+
+                    <!-- Simulated Website Hero dengan Latar Belakang Gambar Transparan -->
+                    <div class="relative z-10 p-6 sm:p-10 border-b border-white/10 overflow-hidden">
+                        <div class="absolute inset-0 bg-cover bg-center opacity-35 pointer-events-none" style="background-image: url('${bgImg}');"></div>
+                        <div class="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/75 to-slate-950/45 pointer-events-none"></div>
+
+                        <div class="relative z-10">
+                            <span class="inline-block px-3 py-1 rounded-full bg-black/60 border border-white/15 text-white text-xs font-semibold mb-3">
+                                ${project.badge}
+                            </span>
+                            <h3 class="font-display text-xl sm:text-3xl font-extrabold text-white leading-tight max-w-2xl">
+                                ${project.heroHeading}
+                            </h3>
+                            <p class="text-slate-200 text-xs sm:text-sm mt-3 max-w-xl leading-relaxed">
+                                ${project.heroSub}
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Simulated Interactive Content Area -->
+                    <div class="relative z-10 p-6 space-y-4">
+                        <div id="demo-toast-box" class="hidden px-4 py-2.5 rounded-xl bg-sky-500/15 border border-sky-500/35 text-sky-300 text-xs font-medium"></div>
+                        ${interactiveSectionHtml}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Helper Fungsi Interaksi di Dalam Modal Demo
+        function updatePropertyDemoFilter(filterVal) {
+            demoState.propertyFilter = filterVal;
+            const proj = PORTFOLIO_PROJECTS.find(p => p.id === 'property');
+            if (proj) renderDemoContent(proj);
+        }
+
+        function addDemoCartItem(projId, price, title) {
+            demoState.cartCount += 1;
+            demoState.cartTotal += price;
+            const proj = PORTFOLIO_PROJECTS.find(p => p.id === projId);
+            if (proj) {
+                renderDemoContent(proj);
+                showDemoToast(`"${title}" ditambahkan ke simulasi keranjang.`);
+            }
+        }
+
+        function resetDemoCart(projId) {
+            demoState.cartCount = 0;
+            demoState.cartTotal = 0;
+            const proj = PORTFOLIO_PROJECTS.find(p => p.id === projId);
+            if (proj) renderDemoContent(proj);
+        }
+
+        function switchCompanyDemoTab(idx) {
+            demoState.activeServiceIdx = idx;
+            const proj = PORTFOLIO_PROJECTS.find(p => p.id === 'company');
+            if (proj) renderDemoContent(proj);
+        }
+
+        function switchCourseDemoModule(idx) {
+            demoState.activeModuleIdx = idx;
+            const proj = PORTFOLIO_PROJECTS.find(p => p.id === 'course');
+            if (proj) renderDemoContent(proj);
+        }
+
+        function updateTravelPax(delta) {
+            demoState.travelPax = Math.max(1, demoState.travelPax + delta);
+            const proj = PORTFOLIO_PROJECTS.find(p => p.id === 'travel');
+            if (proj) renderDemoContent(proj);
+        }
+
+        function showDemoToast(msg) {
+            const box = document.getElementById('demo-toast-box');
+            if (!box) return;
+            box.textContent = msg;
+            box.classList.remove('hidden');
+        }
+
+        function setPreviewDevice(mode) {
+            const btnDesktop = document.getElementById('view-desktop-btn');
+            const btnMobile = document.getElementById('view-mobile-btn');
+
+            if (mode === 'mobile') {
+                previewContainer.className = "w-full max-w-[375px] mx-auto transition-all duration-300";
+                btnMobile.className = "px-3 py-1.5 rounded-lg bg-sky-500 text-slate-950 font-display font-bold text-xs flex items-center gap-1.5 cursor-pointer transition-all";
+                btnDesktop.className = "px-3 py-1.5 rounded-lg text-slate-400 hover:text-white font-display font-semibold text-xs flex items-center gap-1.5 cursor-pointer transition-all";
+            } else {
+                previewContainer.className = "w-full transition-all duration-300";
+                btnDesktop.className = "px-3 py-1.5 rounded-lg bg-sky-500 text-slate-950 font-display font-bold text-xs flex items-center gap-1.5 cursor-pointer transition-all";
+                btnMobile.className = "px-3 py-1.5 rounded-lg text-slate-400 hover:text-white font-display font-semibold text-xs flex items-center gap-1.5 cursor-pointer transition-all";
+            }
+        }
+
+        function closePreviewModal() {
+            previewModal.classList.add('hidden');
+            previewModal.classList.remove('flex');
+        }
+
+        previewModal.addEventListener('click', (e) => {
+            if (e.target === previewModal) closePreviewModal();
+        });
+
+        // 6. PILIH PAKET & PRE-FILL FORMULIR PEMESANAN
+        function selectPackageAndScroll(packageLabel, defaultType) {
+            const pkgSelect = document.getElementById('package-choice');
+            const typeSelect = document.getElementById('website-type');
+            const banner = document.getElementById('package-selected-banner');
+            const consultSection = document.getElementById('konsultasi');
+
+            if (pkgSelect) pkgSelect.value = packageLabel;
+            if (typeSelect && defaultType) typeSelect.value = defaultType;
+            if (banner) {
+                banner.textContent = `Paket terpilih: ${packageLabel}. Silakan lengkapi nama usaha dan catatan singkat di bawah ini.`;
+                banner.classList.remove('hidden');
+            }
+
+            if (consultSection) {
+                consultSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // 7. SUBMIT FORMULIR KONSULTASI KE WHATSAPP ATAU EMAIL
+        function submitConsultation(channel) {
+            const nameInput = document.getElementById('client-name').value.trim();
+            const typeInput = document.getElementById('website-type').value;
+            const packageInput = document.getElementById('package-choice').value;
+            const notesInput = document.getElementById('client-notes').value.trim();
+            const feedbackEl = document.getElementById('form-feedback');
+
+            if (!nameInput || !notesInput) {
+                feedbackEl.textContent = "Mohon lengkapi kolom Nama / Nama Usaha dan Catatan Singkat terlebih dahulu.";
+                feedbackEl.classList.remove('hidden');
+                return;
+            }
+
+            feedbackEl.classList.add('hidden');
+
+            const messageText = `Halo ${SITE_CONFIG.brandName}, saya ingin memesan pembuatan website:\n\n` +
+                `• Nama / Usaha: ${nameInput}\n` +
+                `• Jenis Website: ${typeInput}\n` +
+                `• Pilihan Paket: ${packageInput}\n` +
+                `• Catatan Kebutuhan: ${notesInput}\n\n` +
+                `Mohon informasi ketersediaan domain dan langkah selanjutnya.`;
+
+            if (channel === 'whatsapp') {
+                openWhatsApp(messageText);
+            } else {
+                const subject = encodeURIComponent(`Pemesanan ${typeInput} (${packageInput}) - ${nameInput}`);
+                const body = encodeURIComponent(messageText);
+                window.location.href = `mailto:${SITE_CONFIG.email}?subject=${subject}&body=${body}`;
+            }
+        }
+
+        // 8. MOBILE NAVIGATION TOGGLE
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            document.querySelectorAll('.mobile-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        }
+
+        // INISIALISASI SELURUH KOMPONEN SAAT HALAMAN DIMUAT
+        window.addEventListener('DOMContentLoaded', () => {
+            renderBrandIdentity();
+            renderServicesGrid();
+            renderPortfolioGrid('all');
+        });
+    </script>
+</body>
+</html>
